@@ -1,0 +1,18 @@
+
+# 日志打印级别
+logging:
+  level:
+    root: INFO
+  file: logs/anti_theft
+# 服务端口号
+server:
+  port: 8090
+  tomcat:
+    uri-encoding: utf-8
+  servlet:
+    context-path: /anti_theft
+# 动态使用的spring文件
+spring:
+  profiles:
+    active: @profileActive@
+  #静态资源映射

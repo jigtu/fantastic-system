@@ -1,0 +1,846 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anti.theft.dao.CaseInformationDao">
+  <resultMap id="BaseResultMap" type="com.anti.theft.entity.CaseInformation">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="alarmPeopleOpenid" jdbcType="VARCHAR" property="alarmPeopleOpenid" />
+    <result column="alarmPeopleName" jdbcType="VARCHAR" property="alarmPeopleName" />
+    <result column="alarmPeopleIdCard" jdbcType="VARCHAR" property="alarmPeopleIdCard" />
+    <result column="alarmPeoplePhone" jdbcType="VARCHAR" property="alarmPeoplePhone" />
+    <result column="alarmPeoplePhoto" jdbcType="VARCHAR" property="alarmPeoplePhoto" />
+    <result column="alarmPeopleFrontPhoto" jdbcType="VARCHAR" property="alarmPeopleFrontPhoto" />
+    <result column="alarmPeopleBackPhoto" jdbcType="VARCHAR" property="alarmPeopleBackPhoto" />
+    <result column="ownerName" jdbcType="VARCHAR" property="ownerName" />
+    <result column="ownerCardId" jdbcType="VARCHAR" property="ownerCardId" />
+    <result column="lostPhoneNumber" jdbcType="VARCHAR" property="lostPhoneNumber" />
+    <result column="lostPhoneNumberTwo" jdbcType="VARCHAR" property="lostPhoneNumberTwo" />
+    <result column="lostPhoneBrand" jdbcType="VARCHAR" property="lostPhoneBrand" />
+    <result column="lostPhoneModel" jdbcType="VARCHAR" property="lostPhoneModel" />
+    <result column="lostPhoneColor" jdbcType="VARCHAR" property="lostPhoneColor" />
+    <result column="lostPhoneMemory" jdbcType="VARCHAR" property="lostPhoneMemory" />
+    <result column="lostPhonePurchasingDate" jdbcType="VARCHAR" property="lostPhonePurchasingDate" />
+    <result column="lostPhonePrice" jdbcType="VARCHAR" property="lostPhonePrice" />
+    <result column="IMEI1" jdbcType="VARCHAR" property="IMEI1" />
+    <result column="IMEI2" jdbcType="VARCHAR" property="IMEI2" />
+    <result column="MEID" jdbcType="VARCHAR" property="MEID" />
+    <result column="IMSI1" jdbcType="VARCHAR" property="IMSI1" />
+    <result column="IMSI2" jdbcType="VARCHAR" property="IMSI2" />
+    <result column="MAC" jdbcType="VARCHAR" property="MAC" />
+    <result column="lostPhoneBluetoothAddress" jdbcType="VARCHAR" property="lostPhoneBluetoothAddress" />
+    <result column="lostPhoneSerialNumber" jdbcType="VARCHAR" property="lostPhoneSerialNumber" />
+    <result column="lostOtherFeatures" jdbcType="VARCHAR" property="lostOtherFeatures" />
+    <result column="alarmType" jdbcType="INTEGER" property="alarmType" />
+    <result column="findCaseTime" jdbcType="TIMESTAMP" property="findCaseTime" />
+    <result column="findCasePlace" jdbcType="VARCHAR" property="findCasePlace" />
+    <result column="findCasePlaceReplenish" jdbcType="VARCHAR" property="findCasePlaceReplenish" />
+    <result column="findCaseLongitude" jdbcType="VARCHAR" property="findCaseLongitude" />
+    <result column="findCaseLatitude" jdbcType="VARCHAR" property="findCaseLatitude" />
+    <result column="alarmTime" jdbcType="TIMESTAMP" property="alarmTime" />
+    <result column="alarmPlace" jdbcType="VARCHAR" property="alarmPlace" />
+    <result column="alarmLongitude" jdbcType="VARCHAR" property="alarmLongitude" />
+    <result column="alarmLatitude" jdbcType="VARCHAR" property="alarmLatitude" />
+    <result column="contactNumber" jdbcType="VARCHAR" property="contactNumber" />
+    <result column="alarmStatus" jdbcType="INTEGER" property="alarmStatus" />
+    <result column="alarmPass" jdbcType="VARCHAR" property="alarmPass" />
+    <result column="alarmChannel" jdbcType="INTEGER" property="alarmChannel" />
+    <result column="extractStatus" jdbcType="INTEGER" property="extractStatus" />
+    <result column="isLost" jdbcType="VARCHAR" property="isLost" />
+    <result column="isAgree" jdbcType="VARCHAR" property="isAgree" />
+    <result column="updateTime" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, alarmPeopleOpenid, alarmPeopleName, alarmPeopleIdCard, alarmPeoplePhone, alarmPeoplePhoto, 
+    alarmPeopleFrontPhoto, alarmPeopleBackPhoto, ownerName, ownerCardId, lostPhoneNumber, 
+    lostPhoneNumberTwo, lostPhoneBrand, lostPhoneModel, lostPhoneColor, lostPhoneMemory, 
+    lostPhonePurchasingDate, lostPhonePrice, IMEI1, IMEI2, MEID, IMSI1, IMSI2, MAC, lostPhoneBluetoothAddress, 
+    lostPhoneSerialNumber, lostOtherFeatures, alarmType, findCaseTime, findCasePlace, 
+    findCasePlaceReplenish, findCaseLongitude, findCaseLatitude, alarmTime, alarmPlace, 
+    alarmLongitude, alarmLatitude, contactNumber, alarmStatus, alarmPass, alarmChannel, 
+    extractStatus, isLost, isAgree, updateTime
+  </sql>
+  <select id="selectByExample" parameterType="com.anti.theft.entity.CaseInformationExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from case_information
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from case_information
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from case_information
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.anti.theft.entity.CaseInformationExample">
+    delete from case_information
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.anti.theft.entity.CaseInformation">
+    insert into case_information (id, alarmPeopleOpenid, alarmPeopleName, 
+      alarmPeopleIdCard, alarmPeoplePhone, alarmPeoplePhoto, 
+      alarmPeopleFrontPhoto, alarmPeopleBackPhoto, 
+      ownerName, ownerCardId, lostPhoneNumber, 
+      lostPhoneNumberTwo, lostPhoneBrand, lostPhoneModel, 
+      lostPhoneColor, lostPhoneMemory, lostPhonePurchasingDate, 
+      lostPhonePrice, IMEI1, IMEI2, 
+      MEID, IMSI1, IMSI2, 
+      MAC, lostPhoneBluetoothAddress, lostPhoneSerialNumber, 
+      lostOtherFeatures, alarmType, findCaseTime, 
+      findCasePlace, findCasePlaceReplenish, 
+      findCaseLongitude, findCaseLatitude, alarmTime, 
+      alarmPlace, alarmLongitude, alarmLatitude, 
+      contactNumber, alarmStatus, alarmPass, 
+      alarmChannel, extractStatus, isLost, 
+      isAgree, updateTime)
+    values (#{id,jdbcType=INTEGER}, #{alarmPeopleOpenid,jdbcType=VARCHAR}, #{alarmPeopleName,jdbcType=VARCHAR}, 
+      #{alarmPeopleIdCard,jdbcType=VARCHAR}, #{alarmPeoplePhone,jdbcType=VARCHAR}, #{alarmPeoplePhoto,jdbcType=VARCHAR}, 
+      #{alarmPeopleFrontPhoto,jdbcType=VARCHAR}, #{alarmPeopleBackPhoto,jdbcType=VARCHAR}, 
+      #{ownerName,jdbcType=VARCHAR}, #{ownerCardId,jdbcType=VARCHAR}, #{lostPhoneNumber,jdbcType=VARCHAR}, 
+      #{lostPhoneNumberTwo,jdbcType=VARCHAR}, #{lostPhoneBrand,jdbcType=VARCHAR}, #{lostPhoneModel,jdbcType=VARCHAR}, 
+      #{lostPhoneColor,jdbcType=VARCHAR}, #{lostPhoneMemory,jdbcType=VARCHAR}, #{lostPhonePurchasingDate,jdbcType=VARCHAR}, 
+      #{lostPhonePrice,jdbcType=VARCHAR}, #{IMEI1,jdbcType=VARCHAR}, #{IMEI2,jdbcType=VARCHAR}, 
+      #{MEID,jdbcType=VARCHAR}, #{IMSI1,jdbcType=VARCHAR}, #{IMSI2,jdbcType=VARCHAR}, 
+      #{MAC,jdbcType=VARCHAR}, #{lostPhoneBluetoothAddress,jdbcType=VARCHAR}, #{lostPhoneSerialNumber,jdbcType=VARCHAR}, 
+      #{lostOtherFeatures,jdbcType=VARCHAR}, #{alarmType,jdbcType=INTEGER}, #{findCaseTime,jdbcType=TIMESTAMP}, 
+      #{findCasePlace,jdbcType=VARCHAR}, #{findCasePlaceReplenish,jdbcType=VARCHAR}, 
+      #{findCaseLongitude,jdbcType=VARCHAR}, #{findCaseLatitude,jdbcType=VARCHAR}, #{alarmTime,jdbcType=TIMESTAMP}, 
+      #{alarmPlace,jdbcType=VARCHAR}, #{alarmLongitude,jdbcType=VARCHAR}, #{alarmLatitude,jdbcType=VARCHAR}, 
+      #{contactNumber,jdbcType=VARCHAR}, #{alarmStatus,jdbcType=INTEGER}, #{alarmPass,jdbcType=VARCHAR}, 
+      #{alarmChannel,jdbcType=INTEGER}, #{extractStatus,jdbcType=INTEGER}, #{isLost,jdbcType=VARCHAR}, 
+      #{isAgree,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.anti.theft.entity.CaseInformation">
+    insert into case_information
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="alarmPeopleOpenid != null">
+        alarmPeopleOpenid,
+      </if>
+      <if test="alarmPeopleName != null">
+        alarmPeopleName,
+      </if>
+      <if test="alarmPeopleIdCard != null">
+        alarmPeopleIdCard,
+      </if>
+      <if test="alarmPeoplePhone != null">
+        alarmPeoplePhone,
+      </if>
+      <if test="alarmPeoplePhoto != null">
+        alarmPeoplePhoto,
+      </if>
+      <if test="alarmPeopleFrontPhoto != null">
+        alarmPeopleFrontPhoto,
+      </if>
+      <if test="alarmPeopleBackPhoto != null">
+        alarmPeopleBackPhoto,
+      </if>
+      <if test="ownerName != null">
+        ownerName,
+      </if>
+      <if test="ownerCardId != null">
+        ownerCardId,
+      </if>
+      <if test="lostPhoneNumber != null">
+        lostPhoneNumber,
+      </if>
+      <if test="lostPhoneNumberTwo != null">
+        lostPhoneNumberTwo,
+      </if>
+      <if test="lostPhoneBrand != null">
+        lostPhoneBrand,
+      </if>
+      <if test="lostPhoneModel != null">
+        lostPhoneModel,
+      </if>
+      <if test="lostPhoneColor != null">
+        lostPhoneColor,
+      </if>
+      <if test="lostPhoneMemory != null">
+        lostPhoneMemory,
+      </if>
+      <if test="lostPhonePurchasingDate != null">
+        lostPhonePurchasingDate,
+      </if>
+      <if test="lostPhonePrice != null">
+        lostPhonePrice,
+      </if>
+      <if test="IMEI1 != null">
+        IMEI1,
+      </if>
+      <if test="IMEI2 != null">
+        IMEI2,
+      </if>
+      <if test="MEID != null">
+        MEID,
+      </if>
+      <if test="IMSI1 != null">
+        IMSI1,
+      </if>
+      <if test="IMSI2 != null">
+        IMSI2,
+      </if>
+      <if test="MAC != null">
+        MAC,
+      </if>
+      <if test="lostPhoneBluetoothAddress != null">
+        lostPhoneBluetoothAddress,
+      </if>
+      <if test="lostPhoneSerialNumber != null">
+        lostPhoneSerialNumber,
+      </if>
+      <if test="lostOtherFeatures != null">
+        lostOtherFeatures,
+      </if>
+      <if test="alarmType != null">
+        alarmType,
+      </if>
+      <if test="findCaseTime != null">
+        findCaseTime,
+      </if>
+      <if test="findCasePlace != null">
+        findCasePlace,
+      </if>
+      <if test="findCasePlaceReplenish != null">
+        findCasePlaceReplenish,
+      </if>
+      <if test="findCaseLongitude != null">
+        findCaseLongitude,
+      </if>
+      <if test="findCaseLatitude != null">
+        findCaseLatitude,
+      </if>
+      <if test="alarmTime != null">
+        alarmTime,
+      </if>
+      <if test="alarmPlace != null">
+        alarmPlace,
+      </if>
+      <if test="alarmLongitude != null">
+        alarmLongitude,
+      </if>
+      <if test="alarmLatitude != null">
+        alarmLatitude,
+      </if>
+      <if test="contactNumber != null">
+        contactNumber,
+      </if>
+      <if test="alarmStatus != null">
+        alarmStatus,
+      </if>
+      <if test="alarmPass != null">
+        alarmPass,
+      </if>
+      <if test="alarmChannel != null">
+        alarmChannel,
+      </if>
+      <if test="extractStatus != null">
+        extractStatus,
+      </if>
+      <if test="isLost != null">
+        isLost,
+      </if>
+      <if test="isAgree != null">
+        isAgree,
+      </if>
+      <if test="updateTime != null">
+        updateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="alarmPeopleOpenid != null">
+        #{alarmPeopleOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmPeopleName != null">
+        #{alarmPeopleName,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmPeopleIdCard != null">
+        #{alarmPeopleIdCard,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmPeoplePhone != null">
+        #{alarmPeoplePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmPeoplePhoto != null">
+        #{alarmPeoplePhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmPeopleFrontPhoto != null">
+        #{alarmPeopleFrontPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmPeopleBackPhoto != null">
+        #{alarmPeopleBackPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerName != null">
+        #{ownerName,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerCardId != null">
+        #{ownerCardId,jdbcType=VARCHAR},
+      </if>
+      <if test="lostPhoneNumber != null">
+        #{lostPhoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="lostPhoneNumberTwo != null">
+        #{lostPhoneNumberTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="lostPhoneBrand != null">
+        #{lostPhoneBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="lostPhoneModel != null">
+        #{lostPhoneModel,jdbcType=VARCHAR},
+      </if>
+      <if test="lostPhoneColor != null">
+        #{lostPhoneColor,jdbcType=VARCHAR},
+      </if>
+      <if test="lostPhoneMemory != null">
+        #{lostPhoneMemory,jdbcType=VARCHAR},
+      </if>
+      <if test="lostPhonePurchasingDate != null">
+        #{lostPhonePurchasingDate,jdbcType=VARCHAR},
+      </if>
+      <if test="lostPhonePrice != null">
+        #{lostPhonePrice,jdbcType=VARCHAR},
+      </if>
+      <if test="IMEI1 != null">
+        #{IMEI1,jdbcType=VARCHAR},
+      </if>
+      <if test="IMEI2 != null">
+        #{IMEI2,jdbcType=VARCHAR},
+      </if>
+      <if test="MEID != null">
+        #{MEID,jdbcType=VARCHAR},
+      </if>
+      <if test="IMSI1 != null">
+        #{IMSI1,jdbcType=VARCHAR},
+      </if>
+      <if test="IMSI2 != null">
+        #{IMSI2,jdbcType=VARCHAR},
+      </if>
+      <if test="MAC != null">
+        #{MAC,jdbcType=VARCHAR},
+      </if>
+      <if test="lostPhoneBluetoothAddress != null">
+        #{lostPhoneBluetoothAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="lostPhoneSerialNumber != null">
+        #{lostPhoneSerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="lostOtherFeatures != null">
+        #{lostOtherFeatures,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmType != null">
+        #{alarmType,jdbcType=INTEGER},
+      </if>
+      <if test="findCaseTime != null">
+        #{findCaseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="findCasePlace != null">
+        #{findCasePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="findCasePlaceReplenish != null">
+        #{findCasePlaceReplenish,jdbcType=VARCHAR},
+      </if>
+      <if test="findCaseLongitude != null">
+        #{findCaseLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="findCaseLatitude != null">
+        #{findCaseLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmTime != null">
+        #{alarmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alarmPlace != null">
+        #{alarmPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmLongitude != null">
+        #{alarmLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmLatitude != null">
+        #{alarmLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="contactNumber != null">
+        #{contactNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmStatus != null">
+        #{alarmStatus,jdbcType=INTEGER},
+      </if>
+      <if test="alarmPass != null">
+        #{alarmPass,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmChannel != null">
+        #{alarmChannel,jdbcType=INTEGER},
+      </if>
+      <if test="extractStatus != null">
+        #{extractStatus,jdbcType=INTEGER},
+      </if>
+      <if test="isLost != null">
+        #{isLost,jdbcType=VARCHAR},
+      </if>
+      <if test="isAgree != null">
+        #{isAgree,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.anti.theft.entity.CaseInformationExample" resultType="java.lang.Long">
+    select count(*) from case_information
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update case_information
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.alarmPeopleOpenid != null">
+        alarmPeopleOpenid = #{record.alarmPeopleOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.alarmPeopleName != null">
+        alarmPeopleName = #{record.alarmPeopleName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.alarmPeopleIdCard != null">
+        alarmPeopleIdCard = #{record.alarmPeopleIdCard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.alarmPeoplePhone != null">
+        alarmPeoplePhone = #{record.alarmPeoplePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.alarmPeoplePhoto != null">
+        alarmPeoplePhoto = #{record.alarmPeoplePhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.alarmPeopleFrontPhoto != null">
+        alarmPeopleFrontPhoto = #{record.alarmPeopleFrontPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.alarmPeopleBackPhoto != null">
+        alarmPeopleBackPhoto = #{record.alarmPeopleBackPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ownerName != null">
+        ownerName = #{record.ownerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ownerCardId != null">
+        ownerCardId = #{record.ownerCardId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lostPhoneNumber != null">
+        lostPhoneNumber = #{record.lostPhoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lostPhoneNumberTwo != null">
+        lostPhoneNumberTwo = #{record.lostPhoneNumberTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lostPhoneBrand != null">
+        lostPhoneBrand = #{record.lostPhoneBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lostPhoneModel != null">
+        lostPhoneModel = #{record.lostPhoneModel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lostPhoneColor != null">
+        lostPhoneColor = #{record.lostPhoneColor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lostPhoneMemory != null">
+        lostPhoneMemory = #{record.lostPhoneMemory,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lostPhonePurchasingDate != null">
+        lostPhonePurchasingDate = #{record.lostPhonePurchasingDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lostPhonePrice != null">
+        lostPhonePrice = #{record.lostPhonePrice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.IMEI1 != null">
+        IMEI1 = #{record.IMEI1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.IMEI2 != null">
+        IMEI2 = #{record.IMEI2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.MEID != null">
+        MEID = #{record.MEID,jdbcType=VARCHAR},
+      </if>
+      <if test="record.IMSI1 != null">
+        IMSI1 = #{record.IMSI1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.IMSI2 != null">
+        IMSI2 = #{record.IMSI2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.MAC != null">
+        MAC = #{record.MAC,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lostPhoneBluetoothAddress != null">
+        lostPhoneBluetoothAddress = #{record.lostPhoneBluetoothAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lostPhoneSerialNumber != null">
+        lostPhoneSerialNumber = #{record.lostPhoneSerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lostOtherFeatures != null">
+        lostOtherFeatures = #{record.lostOtherFeatures,jdbcType=VARCHAR},
+      </if>
+      <if test="record.alarmType != null">
+        alarmType = #{record.alarmType,jdbcType=INTEGER},
+      </if>
+      <if test="record.findCaseTime != null">
+        findCaseTime = #{record.findCaseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.findCasePlace != null">
+        findCasePlace = #{record.findCasePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.findCasePlaceReplenish != null">
+        findCasePlaceReplenish = #{record.findCasePlaceReplenish,jdbcType=VARCHAR},
+      </if>
+      <if test="record.findCaseLongitude != null">
+        findCaseLongitude = #{record.findCaseLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.findCaseLatitude != null">
+        findCaseLatitude = #{record.findCaseLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.alarmTime != null">
+        alarmTime = #{record.alarmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.alarmPlace != null">
+        alarmPlace = #{record.alarmPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.alarmLongitude != null">
+        alarmLongitude = #{record.alarmLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.alarmLatitude != null">
+        alarmLatitude = #{record.alarmLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactNumber != null">
+        contactNumber = #{record.contactNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.alarmStatus != null">
+        alarmStatus = #{record.alarmStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.alarmPass != null">
+        alarmPass = #{record.alarmPass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.alarmChannel != null">
+        alarmChannel = #{record.alarmChannel,jdbcType=INTEGER},
+      </if>
+      <if test="record.extractStatus != null">
+        extractStatus = #{record.extractStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.isLost != null">
+        isLost = #{record.isLost,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isAgree != null">
+        isAgree = #{record.isAgree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null">
+        updateTime = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update case_information
+    set id = #{record.id,jdbcType=INTEGER},
+      alarmPeopleOpenid = #{record.alarmPeopleOpenid,jdbcType=VARCHAR},
+      alarmPeopleName = #{record.alarmPeopleName,jdbcType=VARCHAR},
+      alarmPeopleIdCard = #{record.alarmPeopleIdCard,jdbcType=VARCHAR},
+      alarmPeoplePhone = #{record.alarmPeoplePhone,jdbcType=VARCHAR},
+      alarmPeoplePhoto = #{record.alarmPeoplePhoto,jdbcType=VARCHAR},
+      alarmPeopleFrontPhoto = #{record.alarmPeopleFrontPhoto,jdbcType=VARCHAR},
+      alarmPeopleBackPhoto = #{record.alarmPeopleBackPhoto,jdbcType=VARCHAR},
+      ownerName = #{record.ownerName,jdbcType=VARCHAR},
+      ownerCardId = #{record.ownerCardId,jdbcType=VARCHAR},
+      lostPhoneNumber = #{record.lostPhoneNumber,jdbcType=VARCHAR},
+      lostPhoneNumberTwo = #{record.lostPhoneNumberTwo,jdbcType=VARCHAR},
+      lostPhoneBrand = #{record.lostPhoneBrand,jdbcType=VARCHAR},
+      lostPhoneModel = #{record.lostPhoneModel,jdbcType=VARCHAR},
+      lostPhoneColor = #{record.lostPhoneColor,jdbcType=VARCHAR},
+      lostPhoneMemory = #{record.lostPhoneMemory,jdbcType=VARCHAR},
+      lostPhonePurchasingDate = #{record.lostPhonePurchasingDate,jdbcType=VARCHAR},
+      lostPhonePrice = #{record.lostPhonePrice,jdbcType=VARCHAR},
+      IMEI1 = #{record.IMEI1,jdbcType=VARCHAR},
+      IMEI2 = #{record.IMEI2,jdbcType=VARCHAR},
+      MEID = #{record.MEID,jdbcType=VARCHAR},
+      IMSI1 = #{record.IMSI1,jdbcType=VARCHAR},
+      IMSI2 = #{record.IMSI2,jdbcType=VARCHAR},
+      MAC = #{record.MAC,jdbcType=VARCHAR},
+      lostPhoneBluetoothAddress = #{record.lostPhoneBluetoothAddress,jdbcType=VARCHAR},
+      lostPhoneSerialNumber = #{record.lostPhoneSerialNumber,jdbcType=VARCHAR},
+      lostOtherFeatures = #{record.lostOtherFeatures,jdbcType=VARCHAR},
+      alarmType = #{record.alarmType,jdbcType=INTEGER},
+      findCaseTime = #{record.findCaseTime,jdbcType=TIMESTAMP},
+      findCasePlace = #{record.findCasePlace,jdbcType=VARCHAR},
+      findCasePlaceReplenish = #{record.findCasePlaceReplenish,jdbcType=VARCHAR},
+      findCaseLongitude = #{record.findCaseLongitude,jdbcType=VARCHAR},
+      findCaseLatitude = #{record.findCaseLatitude,jdbcType=VARCHAR},
+      alarmTime = #{record.alarmTime,jdbcType=TIMESTAMP},
+      alarmPlace = #{record.alarmPlace,jdbcType=VARCHAR},
+      alarmLongitude = #{record.alarmLongitude,jdbcType=VARCHAR},
+      alarmLatitude = #{record.alarmLatitude,jdbcType=VARCHAR},
+      contactNumber = #{record.contactNumber,jdbcType=VARCHAR},
+      alarmStatus = #{record.alarmStatus,jdbcType=INTEGER},
+      alarmPass = #{record.alarmPass,jdbcType=VARCHAR},
+      alarmChannel = #{record.alarmChannel,jdbcType=INTEGER},
+      extractStatus = #{record.extractStatus,jdbcType=INTEGER},
+      isLost = #{record.isLost,jdbcType=VARCHAR},
+      isAgree = #{record.isAgree,jdbcType=VARCHAR},
+      updateTime = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.anti.theft.entity.CaseInformation">
+    update case_information
+    <set>
+      <if test="alarmPeopleOpenid != null">
+        alarmPeopleOpenid = #{alarmPeopleOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmPeopleName != null">
+        alarmPeopleName = #{alarmPeopleName,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmPeopleIdCard != null">
+        alarmPeopleIdCard = #{alarmPeopleIdCard,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmPeoplePhone != null">
+        alarmPeoplePhone = #{alarmPeoplePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmPeoplePhoto != null">
+        alarmPeoplePhoto = #{alarmPeoplePhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmPeopleFrontPhoto != null">
+        alarmPeopleFrontPhoto = #{alarmPeopleFrontPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmPeopleBackPhoto != null">
+        alarmPeopleBackPhoto = #{alarmPeopleBackPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerName != null">
+        ownerName = #{ownerName,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerCardId != null">
+        ownerCardId = #{ownerCardId,jdbcType=VARCHAR},
+      </if>
+      <if test="lostPhoneNumber != null">
+        lostPhoneNumber = #{lostPhoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="lostPhoneNumberTwo != null">
+        lostPhoneNumberTwo = #{lostPhoneNumberTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="lostPhoneBrand != null">
+        lostPhoneBrand = #{lostPhoneBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="lostPhoneModel != null">
+        lostPhoneModel = #{lostPhoneModel,jdbcType=VARCHAR},
+      </if>
+      <if test="lostPhoneColor != null">
+        lostPhoneColor = #{lostPhoneColor,jdbcType=VARCHAR},
+      </if>
+      <if test="lostPhoneMemory != null">
+        lostPhoneMemory = #{lostPhoneMemory,jdbcType=VARCHAR},
+      </if>
+      <if test="lostPhonePurchasingDate != null">
+        lostPhonePurchasingDate = #{lostPhonePurchasingDate,jdbcType=VARCHAR},
+      </if>
+      <if test="lostPhonePrice != null">
+        lostPhonePrice = #{lostPhonePrice,jdbcType=VARCHAR},
+      </if>
+      <if test="IMEI1 != null">
+        IMEI1 = #{IMEI1,jdbcType=VARCHAR},
+      </if>
+      <if test="IMEI2 != null">
+        IMEI2 = #{IMEI2,jdbcType=VARCHAR},
+      </if>
+      <if test="MEID != null">
+        MEID = #{MEID,jdbcType=VARCHAR},
+      </if>
+      <if test="IMSI1 != null">
+        IMSI1 = #{IMSI1,jdbcType=VARCHAR},
+      </if>
+      <if test="IMSI2 != null">
+        IMSI2 = #{IMSI2,jdbcType=VARCHAR},
+      </if>
+      <if test="MAC != null">
+        MAC = #{MAC,jdbcType=VARCHAR},
+      </if>
+      <if test="lostPhoneBluetoothAddress != null">
+        lostPhoneBluetoothAddress = #{lostPhoneBluetoothAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="lostPhoneSerialNumber != null">
+        lostPhoneSerialNumber = #{lostPhoneSerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="lostOtherFeatures != null">
+        lostOtherFeatures = #{lostOtherFeatures,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmType != null">
+        alarmType = #{alarmType,jdbcType=INTEGER},
+      </if>
+      <if test="findCaseTime != null">
+        findCaseTime = #{findCaseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="findCasePlace != null">
+        findCasePlace = #{findCasePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="findCasePlaceReplenish != null">
+        findCasePlaceReplenish = #{findCasePlaceReplenish,jdbcType=VARCHAR},
+      </if>
+      <if test="findCaseLongitude != null">
+        findCaseLongitude = #{findCaseLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="findCaseLatitude != null">
+        findCaseLatitude = #{findCaseLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmTime != null">
+        alarmTime = #{alarmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alarmPlace != null">
+        alarmPlace = #{alarmPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmLongitude != null">
+        alarmLongitude = #{alarmLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmLatitude != null">
+        alarmLatitude = #{alarmLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="contactNumber != null">
+        contactNumber = #{contactNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmStatus != null">
+        alarmStatus = #{alarmStatus,jdbcType=INTEGER},
+      </if>
+      <if test="alarmPass != null">
+        alarmPass = #{alarmPass,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmChannel != null">
+        alarmChannel = #{alarmChannel,jdbcType=INTEGER},
+      </if>
+      <if test="extractStatus != null">
+        extractStatus = #{extractStatus,jdbcType=INTEGER},
+      </if>
+      <if test="isLost != null">
+        isLost = #{isLost,jdbcType=VARCHAR},
+      </if>
+      <if test="isAgree != null">
+        isAgree = #{isAgree,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        updateTime = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.anti.theft.entity.CaseInformation">
+    update case_information
+    set alarmPeopleOpenid = #{alarmPeopleOpenid,jdbcType=VARCHAR},
+      alarmPeopleName = #{alarmPeopleName,jdbcType=VARCHAR},
+      alarmPeopleIdCard = #{alarmPeopleIdCard,jdbcType=VARCHAR},
+      alarmPeoplePhone = #{alarmPeoplePhone,jdbcType=VARCHAR},
+      alarmPeoplePhoto = #{alarmPeoplePhoto,jdbcType=VARCHAR},
+      alarmPeopleFrontPhoto = #{alarmPeopleFrontPhoto,jdbcType=VARCHAR},
+      alarmPeopleBackPhoto = #{alarmPeopleBackPhoto,jdbcType=VARCHAR},
+      ownerName = #{ownerName,jdbcType=VARCHAR},
+      ownerCardId = #{ownerCardId,jdbcType=VARCHAR},
+      lostPhoneNumber = #{lostPhoneNumber,jdbcType=VARCHAR},
+      lostPhoneNumberTwo = #{lostPhoneNumberTwo,jdbcType=VARCHAR},
+      lostPhoneBrand = #{lostPhoneBrand,jdbcType=VARCHAR},
+      lostPhoneModel = #{lostPhoneModel,jdbcType=VARCHAR},
+      lostPhoneColor = #{lostPhoneColor,jdbcType=VARCHAR},
+      lostPhoneMemory = #{lostPhoneMemory,jdbcType=VARCHAR},
+      lostPhonePurchasingDate = #{lostPhonePurchasingDate,jdbcType=VARCHAR},
+      lostPhonePrice = #{lostPhonePrice,jdbcType=VARCHAR},
+      IMEI1 = #{IMEI1,jdbcType=VARCHAR},
+      IMEI2 = #{IMEI2,jdbcType=VARCHAR},
+      MEID = #{MEID,jdbcType=VARCHAR},
+      IMSI1 = #{IMSI1,jdbcType=VARCHAR},
+      IMSI2 = #{IMSI2,jdbcType=VARCHAR},
+      MAC = #{MAC,jdbcType=VARCHAR},
+      lostPhoneBluetoothAddress = #{lostPhoneBluetoothAddress,jdbcType=VARCHAR},
+      lostPhoneSerialNumber = #{lostPhoneSerialNumber,jdbcType=VARCHAR},
+      lostOtherFeatures = #{lostOtherFeatures,jdbcType=VARCHAR},
+      alarmType = #{alarmType,jdbcType=INTEGER},
+      findCaseTime = #{findCaseTime,jdbcType=TIMESTAMP},
+      findCasePlace = #{findCasePlace,jdbcType=VARCHAR},
+      findCasePlaceReplenish = #{findCasePlaceReplenish,jdbcType=VARCHAR},
+      findCaseLongitude = #{findCaseLongitude,jdbcType=VARCHAR},
+      findCaseLatitude = #{findCaseLatitude,jdbcType=VARCHAR},
+      alarmTime = #{alarmTime,jdbcType=TIMESTAMP},
+      alarmPlace = #{alarmPlace,jdbcType=VARCHAR},
+      alarmLongitude = #{alarmLongitude,jdbcType=VARCHAR},
+      alarmLatitude = #{alarmLatitude,jdbcType=VARCHAR},
+      contactNumber = #{contactNumber,jdbcType=VARCHAR},
+      alarmStatus = #{alarmStatus,jdbcType=INTEGER},
+      alarmPass = #{alarmPass,jdbcType=VARCHAR},
+      alarmChannel = #{alarmChannel,jdbcType=INTEGER},
+      extractStatus = #{extractStatus,jdbcType=INTEGER},
+      isLost = #{isLost,jdbcType=VARCHAR},
+      isAgree = #{isAgree,jdbcType=VARCHAR},
+      updateTime = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

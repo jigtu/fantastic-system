@@ -1,0 +1,43 @@
+# 数据源 配置
+spring:
+  datasource:
+      url: jdbc:mysql://127.0.0.1:3306/anti_theft?useUnicode=true&characterEncoding=utf-8&&useSSL=false&zeroDateTimeBehavior=convertToNull
+      username: root
+      password: root
+      driverClassName: com.mysql.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
+      # 连接池属性配置
+      minIdleSize: 5
+      initialSize: 5
+      maxActive: 20
+      maxWait: 6000
+      validationQuery: SELECT 1 FROM DUAL
+      logSlowSql: true
+      filters: stat,wall,slf4j
+  # redis 配置
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
+    timeout: 50000ms
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.anti.theft.entity
+file:
+  uploadPath: /opt/anti_theft/app/
+
+compare2:
+  key: 33333333
+  secret:
+#
+compare:
+  url: http://111.205.128.9:10080/CompareInterfaceService/services/JYWebservice
+ocr:
+  url: http://111.205.128.10:6060/njsafety_ocr4idcard/services/IDCardOcr?wsdl
+imei:
+  url: http://111.205.128.10:6060/njsafety_ocr4emei/services/EMEIOCR?wsdl
+#
+prosthesis:
+  key: 66666666
+  secret:
+  url: http://111.205.128.9:10080/CompareInterfaceService/services/JYWebservice

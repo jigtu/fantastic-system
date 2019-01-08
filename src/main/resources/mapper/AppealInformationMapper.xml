@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anti.theft.dao.AppealInformationDao">
+  <resultMap id="BaseResultMap" type="com.anti.theft.entity.AppealInformation">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="openid" jdbcType="VARCHAR" property="openid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="idCard" jdbcType="VARCHAR" property="idCard" />
+    <result column="photo" jdbcType="VARCHAR" property="photo" />
+    <result column="frontPhoto" jdbcType="VARCHAR" property="frontPhoto" />
+    <result column="backPhoto" jdbcType="VARCHAR" property="backPhoto" />
+    <result column="contactNumber" jdbcType="VARCHAR" property="contactNumber" />
+    <result column="appealCause" jdbcType="VARCHAR" property="appealCause" />
+    <result column="otherAppealCause" jdbcType="VARCHAR" property="otherAppealCause" />
+    <result column="buyingTime" jdbcType="TIMESTAMP" property="buyingTime" />
+    <result column="imei" jdbcType="VARCHAR" property="imei" />
+    <result column="ecidence" jdbcType="VARCHAR" property="ecidence" />
+    <result column="cellPhoneFeatures" jdbcType="VARCHAR" property="cellPhoneFeatures" />
+    <result column="appealTime" jdbcType="TIMESTAMP" property="appealTime" />
+    <result column="appealUsualAddr" jdbcType="VARCHAR" property="appealUsualAddr" />
+    <result column="complainTime" jdbcType="TIMESTAMP" property="complainTime" />
+    <result column="appealAddr" jdbcType="VARCHAR" property="appealAddr" />
+    <result column="appealLongitude" jdbcType="VARCHAR" property="appealLongitude" />
+    <result column="appealLatitude" jdbcType="VARCHAR" property="appealLatitude" />
+    <result column="buyingAddr" jdbcType="VARCHAR" property="buyingAddr" />
+    <result column="appealState" jdbcType="VARCHAR" property="appealState" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, openid, `name`, idCard, photo, frontPhoto, backPhoto, contactNumber, appealCause, 
+    otherAppealCause, buyingTime, imei, ecidence, cellPhoneFeatures, appealTime, appealUsualAddr, 
+    complainTime, appealAddr, appealLongitude, appealLatitude, buyingAddr, appealState
+  </sql>
+  <select id="selectByExample" parameterType="com.anti.theft.entity.AppealInformationExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from appeal_information
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from appeal_information
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from appeal_information
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.anti.theft.entity.AppealInformationExample">
+    delete from appeal_information
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.anti.theft.entity.AppealInformation">
+    insert into appeal_information (id, openid, `name`, 
+      idCard, photo, frontPhoto, 
+      backPhoto, contactNumber, appealCause, 
+      otherAppealCause, buyingTime, imei, 
+      ecidence, cellPhoneFeatures, appealTime, 
+      appealUsualAddr, complainTime, appealAddr, 
+      appealLongitude, appealLatitude, buyingAddr, 
+      appealState)
+    values (#{id,jdbcType=INTEGER}, #{openid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{idCard,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, #{frontPhoto,jdbcType=VARCHAR}, 
+      #{backPhoto,jdbcType=VARCHAR}, #{contactNumber,jdbcType=VARCHAR}, #{appealCause,jdbcType=VARCHAR}, 
+      #{otherAppealCause,jdbcType=VARCHAR}, #{buyingTime,jdbcType=TIMESTAMP}, #{imei,jdbcType=VARCHAR}, 
+      #{ecidence,jdbcType=VARCHAR}, #{cellPhoneFeatures,jdbcType=VARCHAR}, #{appealTime,jdbcType=TIMESTAMP}, 
+      #{appealUsualAddr,jdbcType=VARCHAR}, #{complainTime,jdbcType=TIMESTAMP}, #{appealAddr,jdbcType=VARCHAR}, 
+      #{appealLongitude,jdbcType=VARCHAR}, #{appealLatitude,jdbcType=VARCHAR}, #{buyingAddr,jdbcType=VARCHAR}, 
+      #{appealState,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.anti.theft.entity.AppealInformation">
+    insert into appeal_information
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="openid != null">
+        openid,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="idCard != null">
+        idCard,
+      </if>
+      <if test="photo != null">
+        photo,
+      </if>
+      <if test="frontPhoto != null">
+        frontPhoto,
+      </if>
+      <if test="backPhoto != null">
+        backPhoto,
+      </if>
+      <if test="contactNumber != null">
+        contactNumber,
+      </if>
+      <if test="appealCause != null">
+        appealCause,
+      </if>
+      <if test="otherAppealCause != null">
+        otherAppealCause,
+      </if>
+      <if test="buyingTime != null">
+        buyingTime,
+      </if>
+      <if test="imei != null">
+        imei,
+      </if>
+      <if test="ecidence != null">
+        ecidence,
+      </if>
+      <if test="cellPhoneFeatures != null">
+        cellPhoneFeatures,
+      </if>
+      <if test="appealTime != null">
+        appealTime,
+      </if>
+      <if test="appealUsualAddr != null">
+        appealUsualAddr,
+      </if>
+      <if test="complainTime != null">
+        complainTime,
+      </if>
+      <if test="appealAddr != null">
+        appealAddr,
+      </if>
+      <if test="appealLongitude != null">
+        appealLongitude,
+      </if>
+      <if test="appealLatitude != null">
+        appealLatitude,
+      </if>
+      <if test="buyingAddr != null">
+        buyingAddr,
+      </if>
+      <if test="appealState != null">
+        appealState,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null">
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="frontPhoto != null">
+        #{frontPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="backPhoto != null">
+        #{backPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="contactNumber != null">
+        #{contactNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="appealCause != null">
+        #{appealCause,jdbcType=VARCHAR},
+      </if>
+      <if test="otherAppealCause != null">
+        #{otherAppealCause,jdbcType=VARCHAR},
+      </if>
+      <if test="buyingTime != null">
+        #{buyingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="imei != null">
+        #{imei,jdbcType=VARCHAR},
+      </if>
+      <if test="ecidence != null">
+        #{ecidence,jdbcType=VARCHAR},
+      </if>
+      <if test="cellPhoneFeatures != null">
+        #{cellPhoneFeatures,jdbcType=VARCHAR},
+      </if>
+      <if test="appealTime != null">
+        #{appealTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appealUsualAddr != null">
+        #{appealUsualAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="complainTime != null">
+        #{complainTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appealAddr != null">
+        #{appealAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="appealLongitude != null">
+        #{appealLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="appealLatitude != null">
+        #{appealLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="buyingAddr != null">
+        #{buyingAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="appealState != null">
+        #{appealState,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.anti.theft.entity.AppealInformationExample" resultType="java.lang.Long">
+    select count(*) from appeal_information
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update appeal_information
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.openid != null">
+        openid = #{record.openid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        `name` = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idCard != null">
+        idCard = #{record.idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.photo != null">
+        photo = #{record.photo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.frontPhoto != null">
+        frontPhoto = #{record.frontPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.backPhoto != null">
+        backPhoto = #{record.backPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactNumber != null">
+        contactNumber = #{record.contactNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appealCause != null">
+        appealCause = #{record.appealCause,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherAppealCause != null">
+        otherAppealCause = #{record.otherAppealCause,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyingTime != null">
+        buyingTime = #{record.buyingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.imei != null">
+        imei = #{record.imei,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ecidence != null">
+        ecidence = #{record.ecidence,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cellPhoneFeatures != null">
+        cellPhoneFeatures = #{record.cellPhoneFeatures,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appealTime != null">
+        appealTime = #{record.appealTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.appealUsualAddr != null">
+        appealUsualAddr = #{record.appealUsualAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.complainTime != null">
+        complainTime = #{record.complainTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.appealAddr != null">
+        appealAddr = #{record.appealAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appealLongitude != null">
+        appealLongitude = #{record.appealLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appealLatitude != null">
+        appealLatitude = #{record.appealLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyingAddr != null">
+        buyingAddr = #{record.buyingAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appealState != null">
+        appealState = #{record.appealState,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update appeal_information
+    set id = #{record.id,jdbcType=INTEGER},
+      openid = #{record.openid,jdbcType=VARCHAR},
+      `name` = #{record.name,jdbcType=VARCHAR},
+      idCard = #{record.idCard,jdbcType=VARCHAR},
+      photo = #{record.photo,jdbcType=VARCHAR},
+      frontPhoto = #{record.frontPhoto,jdbcType=VARCHAR},
+      backPhoto = #{record.backPhoto,jdbcType=VARCHAR},
+      contactNumber = #{record.contactNumber,jdbcType=VARCHAR},
+      appealCause = #{record.appealCause,jdbcType=VARCHAR},
+      otherAppealCause = #{record.otherAppealCause,jdbcType=VARCHAR},
+      buyingTime = #{record.buyingTime,jdbcType=TIMESTAMP},
+      imei = #{record.imei,jdbcType=VARCHAR},
+      ecidence = #{record.ecidence,jdbcType=VARCHAR},
+      cellPhoneFeatures = #{record.cellPhoneFeatures,jdbcType=VARCHAR},
+      appealTime = #{record.appealTime,jdbcType=TIMESTAMP},
+      appealUsualAddr = #{record.appealUsualAddr,jdbcType=VARCHAR},
+      complainTime = #{record.complainTime,jdbcType=TIMESTAMP},
+      appealAddr = #{record.appealAddr,jdbcType=VARCHAR},
+      appealLongitude = #{record.appealLongitude,jdbcType=VARCHAR},
+      appealLatitude = #{record.appealLatitude,jdbcType=VARCHAR},
+      buyingAddr = #{record.buyingAddr,jdbcType=VARCHAR},
+      appealState = #{record.appealState,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.anti.theft.entity.AppealInformation">
+    update appeal_information
+    <set>
+      <if test="openid != null">
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        idCard = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null">
+        photo = #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="frontPhoto != null">
+        frontPhoto = #{frontPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="backPhoto != null">
+        backPhoto = #{backPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="contactNumber != null">
+        contactNumber = #{contactNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="appealCause != null">
+        appealCause = #{appealCause,jdbcType=VARCHAR},
+      </if>
+      <if test="otherAppealCause != null">
+        otherAppealCause = #{otherAppealCause,jdbcType=VARCHAR},
+      </if>
+      <if test="buyingTime != null">
+        buyingTime = #{buyingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="imei != null">
+        imei = #{imei,jdbcType=VARCHAR},
+      </if>
+      <if test="ecidence != null">
+        ecidence = #{ecidence,jdbcType=VARCHAR},
+      </if>
+      <if test="cellPhoneFeatures != null">
+        cellPhoneFeatures = #{cellPhoneFeatures,jdbcType=VARCHAR},
+      </if>
+      <if test="appealTime != null">
+        appealTime = #{appealTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appealUsualAddr != null">
+        appealUsualAddr = #{appealUsualAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="complainTime != null">
+        complainTime = #{complainTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appealAddr != null">
+        appealAddr = #{appealAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="appealLongitude != null">
+        appealLongitude = #{appealLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="appealLatitude != null">
+        appealLatitude = #{appealLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="buyingAddr != null">
+        buyingAddr = #{buyingAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="appealState != null">
+        appealState = #{appealState,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.anti.theft.entity.AppealInformation">
+    update appeal_information
+    set openid = #{openid,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
+      idCard = #{idCard,jdbcType=VARCHAR},
+      photo = #{photo,jdbcType=VARCHAR},
+      frontPhoto = #{frontPhoto,jdbcType=VARCHAR},
+      backPhoto = #{backPhoto,jdbcType=VARCHAR},
+      contactNumber = #{contactNumber,jdbcType=VARCHAR},
+      appealCause = #{appealCause,jdbcType=VARCHAR},
+      otherAppealCause = #{otherAppealCause,jdbcType=VARCHAR},
+      buyingTime = #{buyingTime,jdbcType=TIMESTAMP},
+      imei = #{imei,jdbcType=VARCHAR},
+      ecidence = #{ecidence,jdbcType=VARCHAR},
+      cellPhoneFeatures = #{cellPhoneFeatures,jdbcType=VARCHAR},
+      appealTime = #{appealTime,jdbcType=TIMESTAMP},
+      appealUsualAddr = #{appealUsualAddr,jdbcType=VARCHAR},
+      complainTime = #{complainTime,jdbcType=TIMESTAMP},
+      appealAddr = #{appealAddr,jdbcType=VARCHAR},
+      appealLongitude = #{appealLongitude,jdbcType=VARCHAR},
+      appealLatitude = #{appealLatitude,jdbcType=VARCHAR},
+      buyingAddr = #{buyingAddr,jdbcType=VARCHAR},
+      appealState = #{appealState,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

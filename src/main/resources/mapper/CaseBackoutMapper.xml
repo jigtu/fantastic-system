@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anti.theft.dao.CaseBackoutDao">
+  <resultMap id="BaseResultMap" type="com.anti.theft.entity.CaseBackout">
+    <result column="caseId" jdbcType="INTEGER" property="caseId" />
+    <result column="openid" jdbcType="VARCHAR" property="openid" />
+    <result column="backoutPhone" jdbcType="VARCHAR" property="backoutPhone" />
+    <result column="backoutName" jdbcType="VARCHAR" property="backoutName" />
+    <result column="backoutIdCard" jdbcType="VARCHAR" property="backoutIdCard" />
+    <result column="backoutPhoto" jdbcType="VARCHAR" property="backoutPhoto" />
+    <result column="backoutFrontPhoto" jdbcType="VARCHAR" property="backoutFrontPhoto" />
+    <result column="backoutBackPhoto" jdbcType="VARCHAR" property="backoutBackPhoto" />
+    <result column="backoutReason" jdbcType="VARCHAR" property="backoutReason" />
+    <result column="backoutTime" jdbcType="TIMESTAMP" property="backoutTime" />
+    <result column="backoutStatus" jdbcType="VARCHAR" property="backoutStatus" />
+    <result column="backoutPlace" jdbcType="VARCHAR" property="backoutPlace" />
+    <result column="backoutPlaceLongitude" jdbcType="VARCHAR" property="backoutPlaceLongitude" />
+    <result column="backoutPlaceLatitude" jdbcType="VARCHAR" property="backoutPlaceLatitude" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    caseId, openid, backoutPhone, backoutName, backoutIdCard, backoutPhoto, backoutFrontPhoto,
+    backoutBackPhoto, backoutReason, backoutTime, backoutStatus, backoutPlace, backoutPlaceLongitude,
+    backoutPlaceLatitude
+  </sql>
+  <select id="selectByExample" parameterType="com.anti.theft.entity.CaseBackoutExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from case_backout
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.anti.theft.entity.CaseBackoutExample">
+    delete from case_backout
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.anti.theft.entity.CaseBackout">
+    insert into case_backout (caseId, openid, backoutPhone,
+      backoutName, backoutIdCard, backoutPhoto, 
+      backoutFrontPhoto, backoutBackPhoto, backoutReason,
+      backoutTime, backoutStatus, backoutPlace, 
+      backoutPlaceLongitude, backoutPlaceLatitude
+      )
+    values (#{caseId,jdbcType=INTEGER}, #{openid,jdbcType=VARCHAR}, #{backoutPhone,jdbcType=VARCHAR},
+      #{backoutName,jdbcType=VARCHAR}, #{backoutIdCard,jdbcType=VARCHAR}, #{backoutPhoto,jdbcType=VARCHAR}, 
+      #{backoutFrontPhoto,jdbcType=VARCHAR}, #{backoutBackPhoto,jdbcType=VARCHAR}, #{backoutReason,jdbcType=VARCHAR},
+      #{backoutTime,jdbcType=TIMESTAMP}, #{backoutStatus,jdbcType=VARCHAR}, #{backoutPlace,jdbcType=VARCHAR}, 
+      #{backoutPlaceLongitude,jdbcType=VARCHAR}, #{backoutPlaceLatitude,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.anti.theft.entity.CaseBackout">
+    insert into case_backout
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="caseId != null">
+        caseId,
+      </if>
+      <if test="openid != null">
+        openid,
+      </if>
+      <if test="backoutPhone != null">
+        backoutPhone,
+      </if>
+      <if test="backoutName != null">
+        backoutName,
+      </if>
+      <if test="backoutIdCard != null">
+        backoutIdCard,
+      </if>
+      <if test="backoutPhoto != null">
+        backoutPhoto,
+      </if>
+      <if test="backoutFrontPhoto != null">
+        backoutFrontPhoto,
+      </if>
+      <if test="backoutBackPhoto != null">
+        backoutBackPhoto,
+      </if>
+      <if test="backoutReason != null">
+        backoutReason,
+      </if>
+      <if test="backoutTime != null">
+        backoutTime,
+      </if>
+      <if test="backoutStatus != null">
+        backoutStatus,
+      </if>
+      <if test="backoutPlace != null">
+        backoutPlace,
+      </if>
+      <if test="backoutPlaceLongitude != null">
+        backoutPlaceLongitude,
+      </if>
+      <if test="backoutPlaceLatitude != null">
+        backoutPlaceLatitude,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="caseId != null">
+        #{caseId,jdbcType=INTEGER},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="backoutPhone != null">
+        #{backoutPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="backoutName != null">
+        #{backoutName,jdbcType=VARCHAR},
+      </if>
+      <if test="backoutIdCard != null">
+        #{backoutIdCard,jdbcType=VARCHAR},
+      </if>
+      <if test="backoutPhoto != null">
+        #{backoutPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="backoutFrontPhoto != null">
+        #{backoutFrontPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="backoutBackPhoto != null">
+        #{backoutBackPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="backoutReason != null">
+        #{backoutReason,jdbcType=VARCHAR},
+      </if>
+      <if test="backoutTime != null">
+        #{backoutTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="backoutStatus != null">
+        #{backoutStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="backoutPlace != null">
+        #{backoutPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="backoutPlaceLongitude != null">
+        #{backoutPlaceLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="backoutPlaceLatitude != null">
+        #{backoutPlaceLatitude,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.anti.theft.entity.CaseBackoutExample" resultType="java.lang.Long">
+    select count(*) from case_backout
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update case_backout
+    <set>
+      <if test="record.caseId != null">
+        caseId = #{record.caseId,jdbcType=INTEGER},
+      </if>
+      <if test="record.openid != null">
+        openid = #{record.openid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.backoutPhone != null">
+        backoutPhone = #{record.backoutPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.backoutName != null">
+        backoutName = #{record.backoutName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.backoutIdCard != null">
+        backoutIdCard = #{record.backoutIdCard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.backoutPhoto != null">
+        backoutPhoto = #{record.backoutPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.backoutFrontPhoto != null">
+        backoutFrontPhoto = #{record.backoutFrontPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.backoutBackPhoto != null">
+        backoutBackPhoto = #{record.backoutBackPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.backoutReason != null">
+        backoutReason = #{record.backoutReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.backoutTime != null">
+        backoutTime = #{record.backoutTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.backoutStatus != null">
+        backoutStatus = #{record.backoutStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.backoutPlace != null">
+        backoutPlace = #{record.backoutPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.backoutPlaceLongitude != null">
+        backoutPlaceLongitude = #{record.backoutPlaceLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.backoutPlaceLatitude != null">
+        backoutPlaceLatitude = #{record.backoutPlaceLatitude,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update case_backout
+    set caseId = #{record.caseId,jdbcType=INTEGER},
+      openid = #{record.openid,jdbcType=VARCHAR},
+      backoutPhone = #{record.backoutPhone,jdbcType=VARCHAR},
+      backoutName = #{record.backoutName,jdbcType=VARCHAR},
+      backoutIdCard = #{record.backoutIdCard,jdbcType=VARCHAR},
+      backoutPhoto = #{record.backoutPhoto,jdbcType=VARCHAR},
+      backoutFrontPhoto = #{record.backoutFrontPhoto,jdbcType=VARCHAR},
+      backoutBackPhoto = #{record.backoutBackPhoto,jdbcType=VARCHAR},
+      backoutReason = #{record.backoutReason,jdbcType=VARCHAR},
+      backoutTime = #{record.backoutTime,jdbcType=TIMESTAMP},
+      backoutStatus = #{record.backoutStatus,jdbcType=VARCHAR},
+      backoutPlace = #{record.backoutPlace,jdbcType=VARCHAR},
+      backoutPlaceLongitude = #{record.backoutPlaceLongitude,jdbcType=VARCHAR},
+      backoutPlaceLatitude = #{record.backoutPlaceLatitude,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

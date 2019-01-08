@@ -1,0 +1,27 @@
+<assembly>
+	<id>bin</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<fileSets>
+		<fileSet>
+			<directory>src/main/resources</directory>
+			<includes>
+				<include>application.yml</include>
+				<include>application-${profileActive}.yml</include>
+			</includes>
+			<outputDirectory>./config/</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>src/main/resources/scripts</directory>
+			<outputDirectory>./</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>target/</directory>
+			<includes>
+				<include>*.jar</include>
+			</includes>
+			<outputDirectory>./</outputDirectory>
+		</fileSet>
+	</fileSets>
+</assembly>
